@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>郑尧 ❤ 黄梦婷 · 婚礼请柬</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#9e1b1b">
+<meta name="description" content="郑尧 与 黄梦婷 的婚礼请柬 · 2026.10.04 · 安徽广德老四川大酒店">
+<!-- 仅加载一个轻量英文花体，走国内可访问的 Google Fonts 镜像；失败自动回退系统字体 -->
+<link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+<link href="https://fonts.loli.net/css2?family=Great+Vibes&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#9e1b1b;
+    --red-deep:#7a1414;
+    --gold:#c8a15a;
+    --gold-dark:#a9842f;
+    --gold-light:#e7cf95;
+    --cream:#fbf7ef;
+    --cream-2:#f4ebda;
+    --ink:#3a2b26;
+    --ink-soft:#6f5b52;
+    --shadow:0 12px 30px rgba(120,40,20,.10);
+    --kai:"STKaiti","KaiTi","楷体","Kaiti SC","Noto Serif SC",serif;
+    --serif:"Noto Serif SC","Songti SC","STSong",STZhongsong,serif;
+    --script:"Great Vibes","Snell Roundhand","Apple Chancery","Brush Script MT",cursive;
+    --en:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+    --sans:"PingFang SC","Microsoft YaHei","微软雅黑","Segoe UI",system-ui,sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{display:block;}
+
+  .container{max-width:760px;margin:0 auto;padding:0 clamp(1.1rem,5vw,1.8rem);}
+
+  /* ============ 通用：英文小标题 / 金线 ============ */
+  .kicker{
+    font-family:var(--en);
+    font-size:clamp(.72rem,2.4vw,.86rem);
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--gold-dark);
+    padding-left:.42em;
+  }
+
+  /* ============ 封面（文字封面） ============ */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    padding:clamp(2.4rem,8vw,4rem) 1.2rem;
+    background:
+      radial-gradient(120% 90% at 50% 8%,#ffffff 0%,var(--cream) 46%,var(--cream-2) 100%);
+    overflow:hidden;
+  }
+  /* 巨大囍字水印 */
+  .hero::before{
+    content:"囍";
+    position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);
+    font-family:var(--kai);
+    font-size:min(120vw,150vh);
+    color:rgba(158,27,27,.04);
+    pointer-events:none;line-height:1;z-index:0;
+  }
+  /* 细金双线边框 */
+  .hero-frame{
+    position:absolute;inset:clamp(12px,3.4vw,26px);
+    border:1px solid rgba(200,161,90,.55);
+    box-shadow:inset 0 0 0 3px rgba(200,161,90,.16);
+    border-radius:6px;pointer-events:none;z-index:1;
+  }
+  .hero-frame::before,.hero-frame::after{
+    content:"❖";position:absolute;left:50%;transform:translateX(-50%);
+    color:var(--gold);font-size:1rem;background:var(--cream);padding:0 .5rem;
+  }
+  .hero-frame::before{top:-.62rem;}
+  .hero-frame::after{bottom:-.62rem;}
+
+  .hero-content{position:relative;z-index:2;animation:rise 1.2s ease both;}
+  .hero-content .kicker{display:block;margin-bottom:1.5rem;}
+
+  .names{
+    font-family:var(--kai);
+    font-weight:400;
+    color:var(--red);
+    font-size:clamp(2.4rem,13vw,5rem);
+    letter-spacing:.04em;
+    line-height:1.12;
+    white-space:nowrap;
+    text-shadow:0 3px 14px rgba(158,27,27,.12);
+  }
+  .names .amp{
+    display:inline-block;
+    color:var(--gold);
+    font-size:.52em;
+    vertical-align:.14em;
+    margin:0 .14em;
+    text-shadow:none;
+  }
+  .names-en{
+    font-family:var(--script);
+    color:var(--gold-dark);
+    font-size:clamp(1.7rem,7vw,2.7rem);
+    line-height:1.1;
+    margin-top:.5rem;
+  }
+  .hero-rule{
+    display:flex;align-items:center;justify-content:center;gap:.9rem;
+    margin:1.5rem 0 1.2rem;color:var(--gold);
+  }
+  .hero-rule span{height:1px;width:clamp(40px,16vw,90px);}
+  .hero-rule span:first-child{background:linear-gradient(90deg,transparent,var(--gold));}
+  .hero-rule span:last-child{background:linear-gradient(90deg,var(--gold),transparent);}
+  .hero-rule i{font-style:normal;color:var(--red);font-size:1rem;}
+
+  .hero-date{
+    font-family:var(--serif);
+    font-size:clamp(1.15rem,4.6vw,1.7rem);
+    letter-spacing:.14em;color:var(--ink);
+  }
+  .hero-date b{color:var(--red);font-weight:600;}
+  .hero-lunar{
+    margin-top:.5rem;
+    font-family:var(--kai);
+    font-size:clamp(.92rem,3.2vw,1.12rem);
+    letter-spacing:.18em;color:var(--ink-soft);
+  }
+
+  /* 倒计时（浅底主题） */
+  .cd-title{
+    margin-top:1.8rem;
+    font-family:var(--kai);
+    font-size:clamp(1rem,3.4vw,1.18rem);
+    letter-spacing:.22em;color:var(--gold-dark);
+  }
+  .countdown{
+    margin-top:.85rem;
+    display:flex;justify-content:center;flex-wrap:wrap;
+    gap:clamp(.55rem,2.4vw,1.1rem);
+  }
+  .cd-cell{
+    min-width:62px;padding:.55rem .7rem;
+    border:1px solid var(--gold);
+    border-radius:14px;
+    background:linear-gradient(180deg,#ffffff,#fdf6ea);
+    box-shadow:0 8px 18px rgba(169,132,47,.14);
+  }
+  .cd-num{
+    font-family:var(--serif);
+    font-size:clamp(1.35rem,5.4vw,2rem);
+    font-weight:600;color:var(--red);line-height:1;
+  }
+  .cd-label{font-size:.66rem;letter-spacing:.18em;color:var(--gold-dark);margin-top:.4rem;}
+  #cd-msg{
+    margin-top:1.3rem;font-family:var(--kai);
+    font-size:1.12rem;color:var(--red);letter-spacing:.1em;min-height:1.2em;
+  }
+
+  .scroll-cue{
+    position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);
+    z-index:2;color:var(--gold-dark);
+    font-size:.7rem;letter-spacing:.3em;text-align:center;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  .scroll-cue .arrow{display:block;margin-top:.35rem;font-size:1.1rem;}
+
+  @keyframes rise{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+
+  /* ============ 囍 印（前世今生上方） ============ */
+  .seal-wrap{text-align:center;margin:clamp(3rem,9vw,5rem) 0 clamp(1.8rem,5vw,2.6rem);}
+  .seal{
+    font-family:var(--kai);
+    display:inline-flex;align-items:center;justify-content:center;
+    width:64px;height:64px;border-radius:50%;
+    background:var(--red);color:var(--gold-light);
+    font-size:2rem;
+    box-shadow:0 8px 22px rgba(158,27,27,.3);
+    border:1px solid var(--gold);
+  }
+
+  /* ============ 前世今生（两图一上一下） ============ */
+  .life{
+    position:relative;
+    border-radius:16px;overflow:hidden;
+    background:#fff;
+    border:1px solid rgba(200,161,90,.5);
+    box-shadow:var(--shadow);
+  }
+  .life img{width:100%;height:auto;display:block;}
+  /* 细金内描边，增加精致感 */
+  .life::after{
+    content:"";position:absolute;inset:7px;border:1px solid rgba(231,207,149,.45);
+    border-radius:11px;pointer-events:none;z-index:2;
+  }
+
+  /* 中部连接符 */
+  .life-link{
+    text-align:center;font-family:var(--kai);color:var(--red);
+    margin:clamp(1.1rem,3.4vw,1.7rem) 0;position:relative;
+  }
+  .life-link span{
+    background:var(--cream);padding:0 1rem;position:relative;z-index:1;
+    font-size:clamp(1.1rem,4vw,1.4rem);letter-spacing:.16em;
+  }
+  .life-link small{
+    display:block;font-family:var(--script);color:var(--gold-dark);
+    font-size:clamp(1.1rem,4vw,1.5rem);margin-top:.1rem;background:var(--cream);
+  }
+  .life-link::before{
+    content:"";position:absolute;left:6%;right:6%;top:.7em;height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  /* ============ 婚礼细节 ============ */
+  .details{margin-top:clamp(2.6rem,7vw,4rem);}
+  .detail-card{
+    background:linear-gradient(180deg,#fff,#fdf7ec);
+    border:1px solid rgba(200,161,90,.5);
+    border-radius:18px;
+    padding:clamp(1.8rem,5vw,2.6rem) clamp(1.3rem,5vw,2.2rem);
+    box-shadow:var(--shadow);text-align:center;
+    position:relative;
+  }
+  .detail-card .kicker{display:block;margin-bottom:1.6rem;}
+  .detail-row{display:flex;flex-direction:column;align-items:center;gap:.35rem;}
+  .detail-badge{
+    width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--red);color:var(--gold-light);
+    font-family:var(--kai);font-size:1.4rem;
+    border:1px solid var(--gold);box-shadow:0 6px 14px rgba(158,27,27,.25);
+    margin-bottom:.5rem;
+  }
+  .detail-main{
+    font-family:var(--kai);color:var(--ink);
+    font-size:clamp(1.15rem,4.4vw,1.5rem);letter-spacing:.08em;
+  }
+  .detail-sub{
+    font-family:var(--serif);color:var(--ink-soft);
+    font-size:clamp(.86rem,3vw,1rem);letter-spacing:.06em;
+  }
+  .detail-div{
+    height:1px;margin:clamp(1.5rem,4vw,2rem) auto;width:78%;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
+
+  /* ============ 进场动画 ============ */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ============ 页脚 ============ */
+  footer{
+    margin-top:clamp(3.4rem,9vw,5.4rem);
+    background:var(--red);color:#f7e7cf;text-align:center;
+    padding:clamp(2.6rem,7vw,3.6rem) 1.4rem;
+    border-top:3px solid var(--gold);
+  }
+  footer .hb{font-family:var(--kai);font-size:2rem;color:var(--gold-light);margin-bottom:.7rem;}
+  footer .nm{font-family:var(--kai);font-size:1.5rem;letter-spacing:.12em;}
+  footer .nm .amp{color:var(--gold-light);font-size:.8em;margin:0 .25em;}
+  footer .dt{margin-top:.5rem;letter-spacing:.18em;opacity:.92;font-family:var(--serif);}
+  footer .closing{margin-top:1.2rem;font-family:var(--script);font-size:1.6rem;color:var(--gold-light);}
+  footer .cr{margin-top:1.1rem;font-size:.74rem;opacity:.6;letter-spacing:.08em;}
+
+  /* ============ 图片加载失败占位 ============ */
+  .img-failed{position:relative;min-height:160px;background:linear-gradient(135deg,#f3e9d6,#fbf7ef);}
+  .img-failed img{visibility:hidden;}
+  .img-failed::after{
+    content:"图片加载失败 ⟳";position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    color:#a98b6a;font-size:.9rem;font-family:var(--serif);letter-spacing:.1em;
+  }
+
+  /* ============ 悬浮音乐播放器 ============ */
+  .player{
+    position:fixed;
+    right:max(1rem,env(safe-area-inset-right));
+    bottom:max(1rem,env(safe-area-inset-bottom));
+    z-index:60;display:flex;align-items:center;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .player-disc{
+    width:56px;height:56px;border-radius:50%;
+    border:none;cursor:pointer;flex:none;padding:0;position:relative;
+    background:radial-gradient(circle at 50% 50%,
+      #fff 0 7%,var(--red) 8% 15%,#5a0f0f 16% 20%,var(--red-deep) 21% 100%);
+    box-shadow:0 8px 22px rgba(120,20,20,.4),inset 0 0 0 2px rgba(231,207,149,.55);
+    display:flex;align-items:center;justify-content:center;
+    animation:spin 9s linear infinite;animation-play-state:paused;
+    transition:transform .25s;
+  }
+  .player.playing .player-disc{animation-play-state:running;}
+  .player-disc:hover{transform:scale(1.06);}
+  .player-disc::after{
+    content:"";position:absolute;inset:0;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.45),transparent 42%);
+    pointer-events:none;
+  }
+  .player-icon{
+    position:relative;z-index:2;color:var(--gold-light);
+    font-size:1.05rem;line-height:1;text-shadow:0 1px 3px rgba(0,0,0,.55);
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .player-tip{
+    position:absolute;right:68px;top:50%;transform:translateY(-50%) translateX(8px);
+    white-space:nowrap;max-width:62vw;overflow:hidden;text-overflow:ellipsis;
+    background:rgba(40,10,10,.86);color:#f7e7cf;
+    font-family:var(--serif);font-size:.82rem;letter-spacing:.05em;
+    padding:.4rem .85rem;border-radius:999px;border:1px solid rgba(231,207,149,.4);
+    box-shadow:0 6px 18px rgba(0,0,0,.28);
+    opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;
+  }
+  .player-tip.show,.player:hover .player-tip{opacity:1;transform:translateY(-50%) translateX(0);}
+  @media (max-width:560px){
+    .player-disc{width:50px;height:50px;}
+    .player-tip{right:60px;font-size:.78rem;max-width:58vw;}
+  }
+  @media (max-width:480px){
+    .countdown{max-width:280px;margin-left:auto;margin-right:auto;}
+    .cd-cell{flex:1 1 calc(50% - .6rem);min-width:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .player .player-disc{animation:none;}
+    .scroll-cue{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- 封面（文字封面） -->
+<header class="hero">
+  <div class="hero-frame"></div>
+  <div class="hero-content">
+    <span class="kicker">We're Getting Married</span>
+    <h1 class="names">郑尧<span class="amp">❤</span>黄梦婷</h1>
+    <div class="names-en">Zheng Yao &amp; Huang Mengting</div>
+    <div class="hero-rule"><span></span><i>囍</i><span></span></div>
+    <div class="hero-date" id="heroDate">婚期 · <b>2026 / 10 / 04</b> · 上午 11:58</div>
+    <div class="hero-lunar">丙午年八月廿四辛亥日</div>
+
+    <div class="cd-title" id="cd-title">距离我们的婚礼还有</div>
+    <div class="countdown" id="countdown">
+      <div class="cd-cell"><div class="cd-num" id="cd-days">--</div><div class="cd-label">DAYS 天</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-hours">--</div><div class="cd-label">HOURS 时</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-mins">--</div><div class="cd-label">MINS 分</div></div>
+      <div class="cd-cell"><div class="cd-num" id="cd-secs">--</div><div class="cd-label">SECS 秒</div></div>
+    </div>
+    <div id="cd-msg"></div>
+  </div>
+  <div class="scroll-cue">向下浏览<span class="arrow">⌄</span></div>
+</header>
+
+<main class="container">
+
+  <!-- 前世今生（极简：囍 + 两图 + 缘定） -->
+  <section id="pastlife">
+    <div class="seal-wrap reveal"><div class="seal">囍</div></div>
+
+    <!-- 前世 · 明制汉服 -->
+    <figure class="life reveal">
+      <img src="images/20260602124811_42_4816.png" loading="lazy"
+           alt="前世·红妆 郑尧与黄梦婷"
+           onerror="this.closest('.life').classList.add('img-failed')">
+    </figure>
+
+    <div class="life-link reveal">
+      <span>缘 ❤ 定</span>
+      <small>Destined to Meet</small>
+    </div>
+
+    <!-- 今生 · 白纱西装 -->
+    <figure class="life reveal">
+      <img src="images/20260602124900_48_4816.png" loading="lazy"
+           alt="今生·白纱 郑尧与黄梦婷"
+           onerror="this.closest('.life').classList.add('img-failed')">
+    </figure>
+  </section>
+
+  <!-- 婚礼细节 -->
+  <section class="details reveal">
+    <div class="detail-card">
+      <span class="kicker">Save the Date</span>
+      <div class="detail-row">
+        <div class="detail-badge">時</div>
+        <div class="detail-main">2026年10月4日 · 上午十一点五十八分</div>
+        <div class="detail-sub">丙午年八月廿四辛亥日　·　Oct. 4th, 2026 · 11:58 AM</div>
+      </div>
+      <div class="detail-div"></div>
+      <div class="detail-row">
+        <div class="detail-badge">址</div>
+        <div class="detail-main">安徽省广德市 · 老四川大酒店</div>
+        <div class="detail-sub">三楼 · 天空之境宴会厅　·　Anhui · Guangde</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="hb">囍</div>
+  <div class="nm">郑尧<span class="amp">&amp;</span>黄梦婷</div>
+  <div class="dt">2026 · 10 · 04　永结同心</div>
+  <div class="closing">With Love &amp; Forever</div>
+  <div class="cr">© 2026 郑尧 &amp; 黄梦婷 · 诚邀您共赴这场盛宴</div>
+</footer>
+
+<!-- 悬浮音乐播放器 -->
+<div class="player" id="player" title="背景音乐">
+  <span class="player-tip" id="playerTip"></span>
+  <button class="player-disc" id="playerDisc" type="button" aria-label="播放音乐">
+    <span class="player-icon" id="playerIcon">►</span>
+  </button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ===== 倒计时 / 正计时 =====
+  var WEDDING = new Date(2026, 9, 4, 11, 58, 0); // 2026/10/04 11:58（月份从0开始，9=十月）
+  var cdMode = "";
+  function pad(n){ return (n<10?"0":"") + n; }
+  function fillCells(total){
+    document.getElementById("cd-days").textContent  = Math.floor(total/86400);
+    document.getElementById("cd-hours").textContent = pad(Math.floor(total%86400/3600));
+    document.getElementById("cd-mins").textContent  = pad(Math.floor(total%3600/60));
+    document.getElementById("cd-secs").textContent  = pad(total%60);
+  }
+  function tick(){
+    var diff = Math.floor((WEDDING - new Date())/1000);
+    var title = document.getElementById("cd-title");
+    var msg = document.getElementById("cd-msg");
+    var mode = diff > 0 ? "before" : "after";
+
+    if(mode !== cdMode){
+      cdMode = mode;
+      if(title) title.textContent = (mode === "before")
+        ? "距离我们的婚礼还有" : "我们已携手相伴";
+      var hd = document.getElementById("heroDate");
+      if(hd) hd.innerHTML = (mode === "before")
+        ? "婚期 · <b>2026 / 10 / 04</b> · 上午 11:58"
+        : "结婚纪念日 · <b>2026 / 10 / 04</b>";
+    }
+
+    if(mode === "before"){
+      fillCells(diff);
+      if(msg) msg.textContent = "";
+    } else {
+      var up = Math.floor((new Date() - WEDDING)/1000);
+      fillCells(up);
+      if(msg) msg.textContent = (up < 86400)
+        ? "今天，是我们的大喜之日 ❤"
+        : "愿往后岁月漫漫，依旧如初 ❤";
+    }
+  }
+
+  // ===== 进场动画 =====
+  function initReveal(){
+    var els = document.querySelectorAll(".reveal");
+    if(!("IntersectionObserver" in window)){
+      els.forEach(function(el){ el.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold:0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  }
+
+  // ===== 悬浮音乐播放器（读取 musics/playlist.json，列表循环 + 首次交互自动播放） =====
+  // 歌单来自 musics/playlist.json（由 _build.py 扫描生成）；本地兜底解析目录列表。
+  function initPlayer(){
+    var wrap = document.getElementById("player");
+    var disc = document.getElementById("playerDisc");
+    var icon = document.getElementById("playerIcon");
+    var tip  = document.getElementById("playerTip");
+    if(!wrap || !disc) return;
+
+    var AUDIO_RE = /\.(mp3|m4a|aac|ogg|oga|wav|flac)$/i;
+    var audio = new Audio();
+    audio.preload = "auto";
+    var list = [], idx = 0, started = false, errStreak = 0;
+
+    function stem(p){ return decodeURIComponent(p.split("/").pop()).replace(/\.[^.]+$/, ""); }
+    function reflect(){
+      var on = !audio.paused && !audio.ended && list.length > 0;
+      wrap.classList.toggle("playing", on);
+      icon.textContent = on ? "❚❚" : (list.length ? "►" : "♪");
+      wrap.setAttribute("aria-label", on ? "暂停音乐" : "播放音乐");
+    }
+    function flash(ms){
+      tip.classList.add("show");
+      clearTimeout(flash._t);
+      flash._t = setTimeout(function(){ tip.classList.remove("show"); }, ms || 3000);
+    }
+    function load(i){
+      if(!list.length) return;
+      idx = (i + list.length) % list.length;
+      audio.src = list[idx].src;
+      tip.textContent = list[idx].title;
+    }
+    function play(){
+      var p = audio.play();
+      if(p && p.then){ p.then(function(){ started = true; }).catch(function(){}); }
+    }
+
+    audio.addEventListener("play", reflect);
+    audio.addEventListener("playing", function(){ errStreak = 0; reflect(); });
+    audio.addEventListener("pause", reflect);
+    audio.addEventListener("ended", function(){ load(idx + 1); play(); });   // 列表循环
+    audio.addEventListener("error", function(){
+      if(!list.length) return;
+      errStreak++;
+      if(errStreak >= list.length){
+        wrap.classList.remove("playing");
+        icon.textContent = "♪";
+        tip.textContent = "musics/ 里没有可播放的音频";
+        flash(6000);
+        return;
+      }
+      load(idx + 1);
+      if(started) play();
+    });
+
+    disc.addEventListener("click", function(){
+      started = true;
+      if(!list.length){ flash(3500); return; }
+      if(audio.paused){ play(); flash(2600); } else { audio.pause(); }
+    });
+
+    function begin(){
+      reflect();
+      if(!list.length){
+        icon.textContent = "♪";
+        tip.textContent = "把 mp3 放进 musics/，再运行 python _build.py";
+        return;
+      }
+      load(0);
+      function arm(){
+        var evs = ["pointerdown","touchstart","keydown"];
+        function kick(){
+          if(started) return cleanup();
+          var p = audio.play();
+          if(p && p.then){ p.then(function(){ started = true; flash(3000); cleanup(); }).catch(function(){}); }
+        }
+        function cleanup(){ evs.forEach(function(e){ window.removeEventListener(e, kick, true); }); }
+        evs.forEach(function(e){ window.addEventListener(e, kick, true); });
+      }
+      var p0 = audio.play();
+      if(p0 && p0.then){ p0.then(function(){ started = true; flash(3500); }).catch(arm); }
+      else { arm(); }
+    }
+
+    function fromJson(){
+      return fetch("musics/playlist.json", { cache:"no-cache" })
+        .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+        .then(function(arr){
+          return (arr || []).map(function(it){
+            return (typeof it === "string")
+              ? { src: it, title: stem(it) }
+              : { src: it.src, title: it.title || stem(it.src) };
+          }).filter(function(x){ return x.src; });
+        });
+    }
+    function fromIndex(){
+      return fetch("musics/").then(function(r){ return r.text(); }).then(function(html){
+        var out = [], re = /href="([^"]+)"/gi, m;
+        while((m = re.exec(html))){
+          if(AUDIO_RE.test(m[1])){
+            var src = /musics\//.test(m[1]) ? m[1] : ("musics/" + m[1].replace(/^\.?\//, ""));
+            out.push({ src: src, title: stem(src) });
+          }
+        }
+        return out;
+      }).catch(function(){ return []; });
+    }
+    fromJson().catch(function(){ return []; })
+      .then(function(l){ return (l && l.length) ? l : fromIndex(); })
+      .then(function(l){ list = l || []; begin(); });
+  }
+
+  // ===== 初始化 =====
+  initReveal();
+  initPlayer();
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+</body>
+</html>
