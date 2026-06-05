@@ -2,10 +2,10 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>郑尧 ❤ 黄梦婷 · 婚礼请柬</title>
+<title>郑尧 ❤ 黄梦婷 · 婚礼邀请函</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#9e1b1b">
-<meta name="description" content="郑尧 与 黄梦婷 的婚礼请柬 · 2026.10.04 · 安徽广德老四川大酒店">
+<meta name="description" content="郑尧 与 黄梦婷 的婚礼邀请函 · 2026.10.04 · 安徽广德老四川大酒店">
 <!-- 仅加载一个轻量英文花体，走国内可访问的 Google Fonts 镜像；失败自动回退系统字体 -->
 <link rel="preconnect" href="https://fonts.loli.net" crossorigin>
 <link href="https://fonts.loli.net/css2?family=Great+Vibes&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
@@ -88,6 +88,18 @@
   .hero-frame::after{bottom:-.62rem;}
 
   .hero-content{position:relative;z-index:2;animation:rise 1.2s ease both;}
+  .hero-title{
+    display:flex;align-items:center;justify-content:center;gap:.6rem;
+    font-family:var(--kai);
+    font-size:clamp(1.15rem,4.6vw,1.6rem);
+    letter-spacing:.42em;color:var(--red);
+    margin-bottom:1.05rem;
+  }
+  .hero-title span{padding-left:.42em;}
+  .hero-title::before,.hero-title::after{
+    content:"";height:1px;width:clamp(22px,7vw,42px);
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  }
   .hero-content .kicker{display:block;margin-bottom:1.5rem;}
 
   .names{
@@ -165,6 +177,11 @@
   #cd-msg{
     margin-top:1.3rem;font-family:var(--kai);
     font-size:1.12rem;color:var(--red);letter-spacing:.1em;min-height:1.2em;
+  }
+  #cd-msg.cd-final{
+    margin-top:1.6rem;
+    font-size:clamp(1.5rem,6vw,2rem);letter-spacing:.18em;
+    color:var(--red);text-shadow:0 2px 12px rgba(158,27,27,.16);
   }
 
   .scroll-cue{
@@ -343,6 +360,7 @@
 <header class="hero">
   <div class="hero-frame"></div>
   <div class="hero-content">
+    <div class="hero-title"><span>婚礼邀请函</span></div>
     <span class="kicker">We're Getting Married</span>
     <h1 class="names">郑尧<span class="amp">❤</span>黄梦婷</h1>
     <div class="names-en">Zheng Yao &amp; Huang Mengting</div>
@@ -429,8 +447,9 @@
   "use strict";
 
   // ===== 倒计时 / 正计时 =====
-  var WEDDING = new Date(2026, 9, 4, 11, 58, 0); // 2026/10/04 11:58（月份从0开始，9=十月）
-  var cdMode = "";
+  var WEDDING     = new Date(2026, 9, 4, 11, 58, 0); // 婚礼开始 11:58（月份从0开始，9=十月）
+  var WEDDING_END = new Date(2026, 9, 4, 19,  0, 0); // 婚礼结束 当日 19:00（下午7点）
+  var cdPhase = "";
   function pad(n){ return (n<10?"0":"") + n; }
   function fillCells(total){
     document.getElementById("cd-days").textContent  = Math.floor(total/86400);
@@ -439,30 +458,36 @@
     document.getElementById("cd-secs").textContent  = pad(total%60);
   }
   function tick(){
-    var diff = Math.floor((WEDDING - new Date())/1000);
+    var now   = new Date();
     var title = document.getElementById("cd-title");
-    var msg = document.getElementById("cd-msg");
-    var mode = diff > 0 ? "before" : "after";
+    var grid  = document.getElementById("countdown");
+    var msg   = document.getElementById("cd-msg");
+    var hd    = document.getElementById("heroDate");
+    // 三阶段：婚礼前倒计时 → 婚礼进行中(11:58~19:00) → 婚礼已圆满完成
+    var phase = (now < WEDDING) ? "before" : (now < WEDDING_END ? "during" : "after");
 
-    if(mode !== cdMode){
-      cdMode = mode;
-      if(title) title.textContent = (mode === "before")
-        ? "距离我们的婚礼还有" : "我们已携手相伴";
-      var hd = document.getElementById("heroDate");
-      if(hd) hd.innerHTML = (mode === "before")
-        ? "婚期 · <b>2026 / 10 / 04</b> · 上午 11:58"
-        : "结婚纪念日 · <b>2026 / 10 / 04</b>";
+    if(phase !== cdPhase){
+      cdPhase = phase;
+      if(phase === "before"){
+        if(title){ title.style.display = ""; title.textContent = "距离我们的婚礼还有"; }
+        if(grid)  grid.style.display = "";
+        if(msg){  msg.textContent = ""; msg.classList.remove("cd-final"); }
+        if(hd)    hd.innerHTML = "婚期 · <b>2026 / 10 / 04</b> · 上午 11:58";
+      } else if(phase === "during"){
+        if(title) title.style.display = "none";
+        if(grid)  grid.style.display = "none";
+        if(msg){  msg.textContent = "婚礼进行中 ❤"; msg.classList.add("cd-final"); }
+        if(hd)    hd.innerHTML = "婚礼当天 · <b>2026 / 10 / 04</b> · 上午 11:58";
+      } else {
+        if(title) title.style.display = "none";
+        if(grid)  grid.style.display = "none";
+        if(msg){  msg.textContent = "婚礼已圆满完成 ❤"; msg.classList.add("cd-final"); }
+        if(hd)    hd.innerHTML = "结婚纪念日 · <b>2026 / 10 / 04</b>";
+      }
     }
 
-    if(mode === "before"){
-      fillCells(diff);
-      if(msg) msg.textContent = "";
-    } else {
-      var up = Math.floor((new Date() - WEDDING)/1000);
-      fillCells(up);
-      if(msg) msg.textContent = (up < 86400)
-        ? "今天，是我们的大喜之日 ❤"
-        : "愿往后岁月漫漫，依旧如初 ❤";
+    if(phase === "before"){
+      fillCells(Math.floor((WEDDING - now)/1000));
     }
   }
 
