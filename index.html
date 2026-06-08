@@ -305,12 +305,23 @@
   /* ============ 邀请正文 ============ */
   .invite{margin-top:clamp(2.8rem,7vw,4.2rem);text-align:center;}
   .invite-guest{
-    font-family:var(--kai);color:var(--ink-soft);
-    font-size:clamp(1rem,3.6vw,1.25rem);letter-spacing:.1em;margin-bottom:1.1rem;
+    font-family:var(--kai);color:var(--ink-soft);line-height:1.7;
+    font-size:clamp(1.15rem,4.4vw,1.55rem);letter-spacing:.06em;margin-bottom:1.6rem;
   }
-  .invite-guest b{
-    color:var(--red);font-weight:400;font-size:1.18em;margin:0 .18em;
-    padding-bottom:.06em;border-bottom:1px solid rgba(200,161,90,.6);
+  .invite-guest .ig-fix{margin:0 .35em;color:var(--ink-soft);}
+  .invite-guest .ig-name{
+    display:inline-block;position:relative;vertical-align:baseline;padding:0 .16em .16em;
+  }
+  .invite-guest .ig-name b{
+    color:var(--red);font-weight:600;font-size:1.55em;letter-spacing:.05em;
+    text-shadow:0 2px 10px rgba(158,27,27,.16);
+  }
+  .invite-guest .ig-name i{
+    font-style:normal;color:var(--gold-dark);font-size:.94em;margin-left:.12em;letter-spacing:.04em;
+  }
+  .invite-guest .ig-name::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,transparent,var(--gold) 18%,var(--gold) 82%,transparent);
   }
   .invite-head{
     font-family:var(--kai);color:var(--red);
@@ -480,7 +491,7 @@
 
   <!-- 邀请正文 -->
   <section class="invite reveal">
-    <div class="invite-guest" id="inviteGuest" hidden>致&nbsp;<b id="guestName"></b>&nbsp;启</div>
+    <div class="invite-guest" id="inviteGuest" hidden><span class="ig-fix">致</span><span class="ig-name"><b id="guestName"></b><i id="guestTitle"></i></span><span class="ig-fix">启</span></div>
     <p class="invite-body">诚邀您一同见证，这场关于一辈子的约定</p>
     <div class="invite-rule"><span></span><i>囍</i><span></span></div>
     <p class="invite-formal">敬备喜筵 · 恭候光临</p>
@@ -720,19 +731,35 @@
     if(b) b.textContent = pick(BLESSINGS);
   }
 
-  // ===== 宾客称呼：从网址参数读取（?to= / ?name= / ?guest=），读不到就隐藏整行 =====
+  // ===== 宾客称呼：从网址参数读取，读不到就隐藏整行 =====
+  //  姓名：?to= / ?name= / ?guest= / ?n=
+  //  性别：?g= / ?gender= / ?sex=（可填 男/女、m/f、先生/女士）→ 姓名后自动接「先生 / 女士」
+  //  例：index.html?to=张三&g=男  →  致 张三 先生 启
+  function honorific(g){
+    g = (g || "").trim().toLowerCase();
+    if(/^(m|male|man|mr|sir|boy|1|男|男士|先生)$/.test(g)) return "先生";
+    if(/^(f|female|woman|ms|mrs|miss|lady|girl|2|女|女士|小姐)$/.test(g)) return "女士";
+    return "";
+  }
   function initGuest(){
-    var v = "";
+    var v = "", g = "";
     try{
       var q = new URLSearchParams(location.search);
-      var keys = ["to","name","guest","g"];
-      for(var i=0;i<keys.length;i++){ var x = q.get(keys[i]); if(x){ v = x; break; } }
+      var nameKeys = ["to","name","guest","n"];
+      for(var i=0;i<nameKeys.length;i++){ var x = q.get(nameKeys[i]); if(x){ v = x; break; } }
+      var genKeys = ["g","gender","sex","title","t"];
+      for(var j=0;j<genKeys.length;j++){ var y = q.get(genKeys[j]); if(y){ g = y; break; } }
     }catch(e){}
     v = (v || "").trim().slice(0, 24);
     if(v){
       var nm = document.getElementById("guestName");
+      var ti = document.getElementById("guestTitle");
       var wrap = document.getElementById("inviteGuest");
-      if(nm && wrap){ nm.textContent = v; wrap.hidden = false; }   // textContent 安全注入，防脚本注入
+      if(nm && wrap){
+        nm.textContent = v;                       // textContent 安全注入，防脚本注入
+        if(ti) ti.textContent = honorific(g);
+        wrap.hidden = false;
+      }
     }
   }
 
